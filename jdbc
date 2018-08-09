@@ -1,0 +1,32 @@
+package saran;
+import java.sql.*;
+public class database 
+{
+	void show()
+	{
+	
+		try{  
+			Class.forName("com.mysql.jdbc.Driver");  
+			Connection con=DriverManager.getConnection(  
+			"jdbc:mysql://localhost:3306/jdbcsara","root","");  
+			//here sonoo is database name, root is username and password  
+			Statement stmt=con.createStatement();  
+			ResultSet rs=stmt.executeQuery("select * from employee");  
+			while(rs.next())  
+			{
+				String name=rs.getString("emp_name");
+				String id=rs.getString("emp_id");
+			System.out.println(name+"  "+id); 
+			}
+			con.close();  
+			}catch(Exception e){ System.out.println(e);
+			
+			}  
+		}
+	
+	public static void main(String args[]){  
+	database s=new database();
+	s.show();
+}
+
+}
